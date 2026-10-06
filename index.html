@@ -1,255 +1,448 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>BetPro Burkina</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BetPro Burkina</title>
 
-        <style>
-            * {
-                  box-sizing: border-box;
-                        margin: 0;
-                              padding: 0;
-                                    font-family: Arial, sans-serif;
-                                        }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-                                            body {
-                                                  background: #0b0f14;
-                                                        color: white;
-                                                              min-height: 100vh;
-                                                                  }
+body{
+  font-family:Arial,sans-serif;
+  background:#0b1020;
+  color:white;
+}
 
-                                                                      header {
-                                                                            background: #121923;
-                                                                                  padding: 18px;
-                                                                                        text-align: center;
-                                                                                              border-bottom: 2px solid #00c853;
-                                                                                                  }
+header{
+  background:#111a33;
+  padding:20px;
+  text-align:center;
+  border-bottom:2px solid #19c37d;
+}
 
-                                                                                                      header h1 {
-                                                                                                            color: #00e676;
-                                                                                                                  font-size: 28px;
-                                                                                                                      }
+.logo{
+  font-size:28px;
+  font-weight:bold;
+}
 
-                                                                                                                          header p {
-                                                                                                                                color: #aaa;
-                                                                                                                                      margin-top: 5px;
-                                                                                                                                          }
+.logo span{
+  color:#19c37d;
+}
 
-                                                                                                                                              .container {
-                                                                                                                                                    padding: 18px;
-                                                                                                                                                          max-width: 600px;
-                                                                                                                                                                margin: auto;
-                                                                                                                                                                    }
+header p{
+  margin-top:6px;
+  color:#aaa;
+}
 
-                                                                                                                                                                        .welcome {
-                                                                                                                                                                              background: linear-gradient(135deg, #123d29, #102019);
-                                                                                                                                                                                    padding: 20px;
-                                                                                                                                                                                          border-radius: 15px;
-                                                                                                                                                                                                margin-bottom: 20px;
-                                                                                                                                                                                                    }
+nav{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding:12px;
+  background:#151f3b;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
 
-                                                                                                                                                                                                        .welcome h2 {
-                                                                                                                                                                                                              color: #00e676;
-                                                                                                                                                                                                                    margin-bottom: 8px;
-                                                                                                                                                                                                                        }
+nav button{
+  border:0;
+  padding:10px 15px;
+  border-radius:20px;
+  background:#263250;
+  color:white;
+  cursor:pointer;
+}
 
-                                                                                                                                                                                                                            .section-title {
-                                                                                                                                                                                                                                  margin: 20px 0 12px;
-                                                                                                                                                                                                                                        font-size: 20px;
-                                                                                                                                                                                                                                            }
+nav button.active{
+  background:#19c37d;
+  color:#07130d;
+}
 
-                                                                                                                                                                                                                                                .match {
-                                                                                                                                                                                                                                                      background: #151d27;
-                                                                                                                                                                                                                                                            border-radius: 14px;
-                                                                                                                                                                                                                                                                  padding: 16px;
-                                                                                                                                                                                                                                                                        margin-bottom: 12px;
-                                                                                                                                                                                                                                                                              border: 1px solid #26313d;
-                                                                                                                                                                                                                                                                                  }
+.container{
+  max-width:700px;
+  margin:auto;
+  padding:18px;
+}
 
-                                                                                                                                                                                                                                                                                      .teams {
-                                                                                                                                                                                                                                                                                            display: flex;
-                                                                                                                                                                                                                                                                                                  justify-content: space-between;
-                                                                                                                                                                                                                                                                                                        align-items: center;
-                                                                                                                                                                                                                                                                                                              text-align: center;
-                                                                                                                                                                                                                                                                                                                    gap: 10px;
-                                                                                                                                                                                                                                                                                                                        }
+.hero{
+  background:linear-gradient(135deg,#17264a,#0e5b43);
+  padding:22px;
+  border-radius:18px;
+  margin-bottom:20px;
+}
 
-                                                                                                                                                                                                                                                                                                                            .team {
-                                                                                                                                                                                                                                                                                                                                  width: 40%;
-                                                                                                                                                                                                                                                                                                                                        font-weight: bold;
-                                                                                                                                                                                                                                                                                                                                            }
+.hero h1{
+  font-size:25px;
+  margin-bottom:8px;
+}
 
-                                                                                                                                                                                                                                                                                                                                                .vs {
-                                                                                                                                                                                                                                                                                                                                                      color: #00e676;
-                                                                                                                                                                                                                                                                                                                                                            font-weight: bold;
-                                                                                                                                                                                                                                                                                                                                                                }
+.hero p{
+  color:#ddd;
+  line-height:1.5;
+}
 
-                                                                                                                                                                                                                                                                                                                                                                    .prediction {
-                                                                                                                                                                                                                                                                                                                                                                          margin-top: 14px;
-                                                                                                                                                                                                                                                                                                                                                                                padding-top: 12px;
-                                                                                                                                                                                                                                                                                                                                                                                      border-top: 1px solid #303a45;
-                                                                                                                                                                                                                                                                                                                                                                                            display: flex;
-                                                                                                                                                                                                                                                                                                                                                                                                  justify-content: space-between;
-                                                                                                                                                                                                                                                                                                                                                                                                        align-items: center;
-                                                                                                                                                                                                                                                                                                                                                                                                            }
+.section-title{
+  margin:20px 0 12px;
+  font-size:20px;
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                                                .prediction strong {
-                                                                                                                                                                                                                                                                                                                                                                                                                      color: #00e676;
-                                                                                                                                                                                                                                                                                                                                                                                                                          }
+.match{
+  background:#151f36;
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:14px;
+  border:1px solid #273451;
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                                                              .confidence {
-                                                                                                                                                                                                                                                                                                                                                                                                                                    color: #ffd600;
-                                                                                                                                                                                                                                                                                                                                                                                                                                        }
+.league{
+  color:#19c37d;
+  font-size:13px;
+  margin-bottom:10px;
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                            button {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                  width: 100%;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        padding: 14px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                              border: none;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    border-radius: 10px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                          background: #00c853;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                color: white;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      font-size: 16px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            font-weight: bold;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  margin-top: 10px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        cursor: pointer;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+.teams{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  text-align:center;
+  gap:10px;
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                button:active {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      transform: scale(0.98);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          }
+.team{
+  width:40%;
+  font-weight:bold;
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              nav {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    position: fixed;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          bottom: 0;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                left: 0;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      right: 0;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            background: #121923;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  display: flex;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        justify-content: space-around;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              padding: 12px 5px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    border-top: 1px solid #29333e;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
+.vs{
+  color:#888;
+  font-weight:bold;
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            nav div {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  color: #aaa;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        text-align: center;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              font-size: 13px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  }
+.odds{
+  display:flex;
+  gap:7px;
+  margin-top:15px;
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      nav div:first-child {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            color: #00e676;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+.odds button{
+  flex:1;
+  padding:11px 5px;
+  border:0;
+  border-radius:9px;
+  background:#263250;
+  color:white;
+  cursor:pointer;
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    .space {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          height: 75px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </style>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </head>
+.odds button:hover,
+.odds button.selected{
+  background:#19c37d;
+  color:#06140d;
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <body>
+.tip{
+  margin-top:12px;
+  padding:10px;
+  background:#202b46;
+  border-radius:8px;
+  color:#ddd;
+  font-size:14px;
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <header>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <h1>⚽ BetPro Burkina</h1>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <p>Analyses & pronostics sportifs</p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </header>
+#message{
+  display:none;
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  right:20px;
+  background:#19c37d;
+  color:#06140d;
+  padding:14px;
+  border-radius:10px;
+  text-align:center;
+  font-weight:bold;
+  z-index:20;
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <main class="container">
+.about{
+  background:#151f36;
+  padding:18px;
+  border-radius:16px;
+  line-height:1.6;
+  color:#ddd;
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <div class="welcome">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <h2>Bienvenue sur BetPro 🇧🇫</h2>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Retrouvez les matchs et les analyses de notre plateforme.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+footer{
+  text-align:center;
+  padding:25px;
+  color:#777;
+  font-size:13px;
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <h2 class="section-title">🔥 Pronostics du jour</h2>
+.hidden{
+  display:none;
+}
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="match">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="teams">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <div class="team">Équipe A</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="vs">VS</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <div class="team">Équipe B</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+@media(max-width:450px){
+  .logo{
+    font-size:24px;
+  }
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <div class="prediction">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <span>Pronostic</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <strong>1X</strong>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <span class="confidence">78%</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+  .hero h1{
+    font-size:21px;
+  }
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="match">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="teams">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <div class="team">Équipe C</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="vs">VS</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <div class="team">Équipe D</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+  .odds button{
+    font-size:12px;
+  }
+}
+</style>
+</head>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <div class="prediction">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <span>Pronostic</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <strong>+1.5 buts</strong>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <span class="confidence">74%</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+<body>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="match">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="teams">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <div class="team">Équipe E</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="vs">VS</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <div class="team">Équipe F</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+<header>
+  <div class="logo">BetPro <span>Burkina</span></div>
+  <p>Pronostics football & informations sportives</p>
+</header>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <div class="prediction">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <span>Pronostic</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <strong>Victoire</strong>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <span class="confidence">71%</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+<nav>
+  <button class="active" onclick="showPage('home',this)">Accueil</button>
+  <button onclick="showPage('matches',this)">Matchs</button>
+  <button onclick="showPage('tips',this)">Pronostics</button>
+  <button onclick="showPage('about',this)">À propos</button>
+</nav>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <button onclick="alert('La fonction sera bientôt disponible !')">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      🔥 Voir tous les pronostics
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </button>
+<div class="container">
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <div class="space"></div>
+<section id="home">
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </main>
+  <div class="hero">
+    <h1>Bienvenue sur BetPro Burkina 🇧🇫</h1>
+    <p>
+      Consulte les matchs et découvre nos suggestions
+      de pronostics sportifs.
+    </p>
+  </div>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <nav>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div>🏠<br>Accueil</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <div>⚽<br>Matchs</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div>🎯<br>Pronostics</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div>📊<br>Analyses</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </nav>
+  <h2 class="section-title">🔥 Matchs du jour</h2>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </body>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </html>                      
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+  <div id="homeMatches"></div>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+</section>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+<section id="matches" class="hidden">
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+  <h2 class="section-title">⚽ Matchs</h2>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+  <div id="allMatches"></div>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+</section>
+
+<section id="tips" class="hidden">
+
+  <h2 class="section-title">🎯 Pronostics</h2>
+
+  <div class="match">
+    <div class="league">Pronostic du jour</div>
+
+    <div class="teams">
+      <div class="team">Équipe A</div>
+      <div class="vs">VS</div>
+      <div class="team">Équipe B</div>
+    </div>
+
+    <div class="tip">
+      💡 Suggestion : Plus de 1,5 buts
+    </div>
+  </div>
+
+  <div class="match">
+    <div class="league">Analyse</div>
+
+    <div class="teams">
+      <div class="team">Équipe C</div>
+      <div class="vs">VS</div>
+      <div class="team">Équipe D</div>
+    </div>
+
+    <div class="tip">
+      💡 Suggestion : Les deux équipes marquent
+    </div>
+  </div>
+
+</section>
+
+<section id="about" class="hidden">
+
+  <h2 class="section-title">ℹ️ À propos</h2>
+
+  <div class="about">
+    <p>
+      <strong>BetPro Burkina</strong> est une application
+      destinée à présenter des matchs, statistiques et
+      suggestions de pronostics sportifs.
+    </p>
+
+    <br>
+
+    <p>
+      Les pronostics sont fournis à titre informatif.
+      Aucun résultat sportif n'est garanti.
+    </p>
+  </div>
+
+</section>
+
+</div>
+
+<div id="message"></div>
+
+<footer>
+  © 2026 BetPro Burkina — Tous droits réservés
+</footer>
+
+<script>
+
+const matches = [
+
+  {
+    league:"Premier League",
+    home:"Manchester City",
+    away:"Liverpool",
+    tip:"Plus de 1,5 buts"
+  },
+
+  {
+    league:"La Liga",
+    home:"Real Madrid",
+    away:"Villarreal",
+    tip:"Real Madrid ou nul"
+  },
+
+  {
+    league:"Ligue 1",
+    home:"PSG",
+    away:"Marseille",
+    tip:"Les deux équipes marquent"
+  },
+
+  {
+    league:"Serie A",
+    home:"Inter Milan",
+    away:"AC Milan",
+    tip:"Plus de 1,5 buts"
+  }
+
+];
+
+function createMatch(match){
+
+  return `
+    <div class="match">
+
+      <div class="league">${match.league}</div>
+
+      <div class="teams">
+        <div class="team">${match.home}</div>
+        <div class="vs">VS</div>
+        <div class="team">${match.away}</div>
+      </div>
+
+      <div class="odds">
+
+        <button onclick="selectOdd(this,'1')">
+          1
+        </button>
+
+        <button onclick="selectOdd(this,'X')">
+          X
+        </button>
+
+        <button onclick="selectOdd(this,'2')">
+          2
+        </button>
+
+      </div>
+
+      <div class="tip">
+        🎯 ${match.tip}
+      </div>
+
+    </div>
+  `;
+}
+
+function loadMatches(){
+
+  let html="";
+
+  matches.forEach(match=>{
+    html += createMatch(match);
+  });
+
+  document.getElementById("homeMatches").innerHTML =
+    html;
+
+  document.getElementById("allMatches").innerHTML =
+    html;
+}
+
+function selectOdd(button,odd){
+
+  const buttons =
+    button.parentElement.querySelectorAll("button");
+
+  buttons.forEach(b=>{
+    b.classList.remove("selected");
+  });
+
+  button.classList.add("selected");
+
+  showMessage("Pronostic sélectionné : " + odd);
+}
+
+function showMessage(text){
+
+  const message =
+    document.getElementById("message");
+
+  message.innerText=text;
+  message.style.display="block";
+
+  setTimeout(()=>{
+    message.style.display="none";
+  },2000);
+}
+
+function showPage(page,button){
+
+  document.querySelectorAll(
+    ".container > section"
+  ).forEach(section=>{
+    section.classList.add("hidden");
+  });
+
+  document.getElementById(page)
+    .classList.remove("hidden");
+
+  document.querySelectorAll("nav button")
+    .forEach(b=>{
+      b.classList.remove("active");
+    });
+
+  button.classList.add("active");
+}
+
+loadMatches();
+
+</script>
+
+</body>
+</html>
