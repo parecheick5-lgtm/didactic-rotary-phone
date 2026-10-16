@@ -381,68 +381,64 @@ function createMatch(match){
 
 function loadMatches(){
 
-  let html="";
+async function loadMatches() {
+  const API_TOKEN = "COLLE_TA_CLE_API_ICI";
 
-  matches.forEach(match=>{
-    html += createMatch(match);
-  });
+  const message = document.getElementById("message");
 
-  document.getElementById("homeMatches").innerHTML =
-    html;
+  try {
+    const response = await fetch(
+      "https://api.sportmonks.com/v3/football/livescores?api_token=" +
+      encodeURIComponent(API_TOKEN) +
+      "&include=participants;scores"
+    );
 
-  document.getElementById("allMatches").innerHTML =
-    html;
-}
+    if (!response.ok) {
+      throw new Error("Erreur API : " + response.status);
+    }
 
-function selectOdd(button,odd){
+    const result = await response.json();
+    const fixtures = result.data || [];
 
-  const buttons =
-    button.parentElement.querySelectorAll("button");
+    if (fixtures.length === 0) {
+      showMessage("Aucun match en direct pour le moment.");
+      return;
+    }
 
-  buttons.forEach(b=>{
-    b.classList.remove("selected");
-  });
+    matches = fixtures.map(match => ({
+      home: match.participants?.[0]?.name || "Équipe 1",
+      away: match.participants?.[1]?.name || "Équipe 2",
+      homeScore: match.scores?.find(
+        s => s.description === "CURRENT" &&
+        s.score?.participant === "home"
+      )?.score?.goals ?? 0,
+      awayScore: match.scores?.find(
+        s => s.description === "CURRENT" &&
+        s.score?.participant === "away"
+      )?.score?.goals ?? 0
+    }));
 
-  button.classList.add("selected");
+    let html = "";
 
-  showMessage("Pronostic sélectionné : " + odd);
-}
-
-function showMessage(text){
-
-  const message =
-    document.getElementById("message");
-
-  message.innerText=text;
-  message.style.display="block";
-
-  setTimeout(()=>{
-    message.style.display="none";
-  },2000);
-}
-
-function showPage(page,button){
-
-  document.querySelectorAll(
-    ".container > section"
-  ).forEach(section=>{
-    section.classList.add("hidden");
-  });
-
-  document.getElementById(page)
-    .classList.remove("hidden");
-
-  document.querySelectorAll("nav button")
-    .forEach(b=>{
-      b.classList.remove("active");
+    matches.forEach(match => {
+      html += `
+        <div class="match-card">
+          <div>${match.home}</div>
+          <strong>${match.homeScore} - ${match.awayScore}</strong>
+          <div>${match.away}</div>
+        </div>
+      `;
     });
 
-  button.classList.add("active");
+    document.getElementById("homeMatches").innerHTML = html;
+    document.getElementById("allMatches").innerHTML = html;
+
+  } catch (error) {
+    console.error(error);
+    showMessage("Connexion API impossible. Vérifie ta clé.");
+  }
 }
 
-loadMatches();
+ 
 
-</script>
-
-</body>
-</html>
+  
